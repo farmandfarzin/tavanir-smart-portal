@@ -212,7 +212,7 @@ authenticator = stauth.Authenticate(
     users_config["cookie"]["key"], users_config["cookie"]["expiry_days"]
 )
 
-name, authentication_status, username = authenticator.login(location="main", fields={"Form name": "Login Portal"})
+authenticator.login("main", fields={"Form name": "Login Portal"})
 
 if st.session_state.get("authentication_status") is False:
     st.error("نام کاربری یا رمز عبور نادرست است. / Incorrect Username or Password")
@@ -241,10 +241,10 @@ def init_core_ai(ai_type, api_url, api_key, model_name):
     except Exception:
         embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
         
+    effective_key = api_key if api_key.strip() else "default-placeholder-key"
     if "Online" in ai_type:
-        llm = ChatOpenAI(base_url=api_url, api_key=api_key, model=model_name, temperature=0.2)
+        llm = ChatOpenAI(base_url=api_url, api_key=effective_key, model=model_name, temperature=0.2)
     else:
-        effective_key = api_key if api_key.strip() else "lm-studio-or-ollama"
         llm = ChatOpenAI(base_url=api_url, api_key=effective_key, model=model_name, temperature=0.1)
     return embeddings, llm
 
