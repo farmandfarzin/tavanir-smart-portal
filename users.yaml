@@ -1,0 +1,15 @@
+cookie:
+  expiry_days: 1
+  key: tavanir-secret-auth-cookie-key-2026
+  name: hr_portal_auth_cookie
+credentials:
+  usernames:
+    admin:
+      allowed_regions:
+      - ALL
+      email: admin@tavanir.org
+      name: مدیر ارشد سامانه
+      password: $2b$12$azXeHWhz//7ye5VZTgnL1O27LU043gB0MrGNYAC5uKOYm9G95CzB2
+      role: admin
+preauthorized:
+  emails: []
